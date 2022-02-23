@@ -10,7 +10,7 @@ Python lo encuentran aquí: https://www.python.org/downloads/
 
 Para instalar pygame, abran la terminal, o la consola de comandos en windows y escriban
 
-`user@DesktopPC$ pip install pygame`
+`$ pip install pygame`
 
 Le dan que si a todo y listo.
 
