@@ -21,6 +21,10 @@ bg_rect = bg_surf.get_rect(topleft = (0,700))
 bg2_surf = pygame.image.load(os.path.join('Assets', 'bg.png')).convert()
 bg2_rect = bg2_surf.get_rect(topleft = (0,0))
 
+# Sounds
+hit = pygame.mixer.Sound(os.path.join('Assets', 'hit.wav'))
+fall = pygame.mixer.Sound(os.path.join('Assets', 'fall.wav'))
+
 # función principal
 def main():
     # Seteo del player
@@ -78,12 +82,15 @@ def main():
             pipes.update()
             
             # Game Logic
-            if player.sprite.rect.bottom >= 700:game_on = False
+            if player.sprite.rect.bottom >= 700:
+                game_on = False
+                hit.play()
             for pipe in pipes:
                 if pipe.rect.colliderect(player.sprite.rect):
+                    hit.play()
+                    fall.play()
                     game_on = False
             move_background(bg_rect, bg2_rect)
-        
         # Draw Screen
         screen.blit(bg2_surf, bg2_rect)
         pipes.draw(screen)
