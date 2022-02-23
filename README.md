@@ -19,4 +19,5 @@ Luego vayan a la carpeta donde descomprimieron los archivos y abran el archivo m
 # Controles
 
 ESPACIO y Click izquierdo: Saltar
+
 R o click derecho: Reiniciar
