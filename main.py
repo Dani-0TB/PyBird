@@ -3,6 +3,7 @@ from random import randint
 from sys import exit
 from player import Player
 from pipes import Pipe
+from trigger import Trigger
 
 # Seteo del juego
 SCREEN_SIZE = WIDTH, HEIGHT = 500, 800
@@ -24,20 +25,25 @@ bg2_rect = bg2_surf.get_rect(topleft = (0,0))
 # Sounds
 hit = pygame.mixer.Sound(os.path.join('Assets', 'hit.wav'))
 fall = pygame.mixer.Sound(os.path.join('Assets', 'fall.wav'))
+flap = pygame.mixer.Sound(os.path.join('Assets', 'flap.wav'))
+Oneup = pygame.mixer.Sound(os.path.join('Assets', '1up.wav'))
 
 # función principal
 def main():
+    score = 0
     # Seteo del player
     player = pygame.sprite.GroupSingle()
     player.add(Player())
 
     # Seteo de obstaculos
     pipes = pygame.sprite.Group()
+    triggers = pygame.sprite.Group()
 
     # Timers
     pipe_spawn = pygame.USEREVENT+1
     pygame.time.set_timer(pipe_spawn,1500)
     
+    score_colliding = False
     game_on = True
     menu = False
     final_screen = False
@@ -55,6 +61,7 @@ def main():
                     exit()
                 if event.key == pygame.K_SPACE and game_on:
                         player.sprite.jump()
+                        flap.play()
                 if event.key == pygame.K_r and not game_on:
                     player.sprite.rect.center = (100,250)
                     player.sprite.speed = 0
@@ -64,6 +71,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse = pygame.mouse.get_pressed()
                 if mouse[0] and game_on:
+                    flap.play()
                     player.sprite.jump()
                 if mouse[2] and not game_on:
                     player.sprite.rect.center = (100,250)
@@ -77,10 +85,12 @@ def main():
                 pos = randint(100,400)
                 pipes.add(Pipe(False,pos))
                 pipes.add(Pipe(True,pos))
+                triggers.add(Trigger(pos))
         # Game loops
         if game_on:
             pipes.update()
-            
+            triggers.update()
+            triggers.draw(screen)
             # Game Logic
             if player.sprite.rect.bottom >= 700:
                 game_on = False
@@ -89,7 +99,13 @@ def main():
                 if pipe.rect.colliderect(player.sprite.rect):
                     hit.play()
                     fall.play()
+                    player.sprite.jump()
                     game_on = False
+            for trigger in triggers:
+                if trigger.rect.colliderect(player.sprite.rect):
+                    score += 1
+                    Oneup.play()
+
             move_background(bg_rect, bg2_rect)
         # Draw Screen
         screen.blit(bg2_surf, bg2_rect)

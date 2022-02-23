@@ -12,14 +12,12 @@ class Player(pygame.sprite.Sprite):
         self.GRAVITY = 0.25
         self.speed = 0
 
-        #Animacion y sonido
+        #Animacion
         self.angle = 0
-        self.flap = pygame.mixer.Sound(os.path.join('Assets', 'flap.wav'))
 
     def jump(self):
         self.angle = 0
         self.speed = -7
-        self.flap.play()
     
     def apply_gravity(self):
         if self.rect.bottom <= 700:
