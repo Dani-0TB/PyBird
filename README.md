@@ -14,3 +14,9 @@ Para instalar pygame, abran la terminal, o la consola de comandos en windows y e
 
 Le dan que si a todo y listo.
 
+Luego vayan a la carpeta donde descomprimieron los archivos y abran el archivo main.py y listo.
+
+# Controles
+
+ESPACIO y Click izquierdo: Saltar
+R o click derecho: Reiniciar
