@@ -13,7 +13,7 @@ class Pipe(pygame.sprite.Sprite):
         # Pipe Sprite
         self.image = pygame.image.load(os.path.join('Assets', 'pipe.png')).convert_alpha()
         if self.is_bottom:
-            self.y_pos += 180
+            self.y_pos += 185
             self.rect = self.image.get_rect(midtop = (self.x_pos, self.y_pos))
         else:
             self.rect = self.image.get_rect(midbottom = (self.x_pos, self.y_pos))
