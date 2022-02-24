@@ -7,7 +7,7 @@ class Pipe(pygame.sprite.Sprite):
         super().__init__()
         # Pipe parameters
         self.is_bottom = is_bottom
-        self.x_pos = 600
+        self.x_pos = 700
         self.y_pos = y_pos
         self.speed = 2
         # Pipe Sprite

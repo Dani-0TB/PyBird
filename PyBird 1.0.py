@@ -18,7 +18,7 @@ pygame.display.set_icon(icon_surf)
 pygame.mixer.init()
 
 # Fuentea
-font_px = 75
+font_px = 12
 font = pygame.font.Font(os.path.join("Assets", "font.ttf"), font_px)
 font2 = pygame.font.Font(os.path.join("Assets", "font2.ttf"), font_px)
 
@@ -111,28 +111,25 @@ def main():
         # Game loops
         if game_starting:
             player.sprite.rect.center = (100, 250)
-            font = pygame.font.Font(os.path.join("Assets", "font.ttf"), 30)
-            font2 = pygame.font.Font(os.path.join("Assets", "font2.ttf"), 30)
-            
+            string = "Get Ready"
+            font_px = 40
+            font = pygame.font.Font(os.path.join("Assets", "font.ttf"), font_px)
+            font2 = pygame.font.Font(os.path.join("Assets", "font2.ttf"), font_px)
+            background_text = font2.render(string, True, (225,225,225))
+            text = font.render(string, True, (0,0,0))
+            font_rect = background_text.get_rect(center = (WIDTH//2, 500))
+            font_rect2 = text.get_rect(center = (WIDTH//2+2, 506))
+                
             spawn_pipes = False
             if animation_counter >= 0:
                 
-                
-                font_surface = pygame.Surface((100,30))
-                
-                background_text = font2.render("Get Ready", True, (225,225,225))
-                score_text = font.render("Get Ready", True, (0,0,0))
-                font_rect = font_surface.get_rect(center = (225, 500))
-                font_rect2 = font_surface.get_rect(center = (226, 501))
-                
-        
                 move_background(bg_rect, bg2_rect)
 
                 screen.blit(bg2_surf, bg2_rect)
                 screen.blit(bg_surf,bg_rect)
                 player.draw(screen)
                 screen.blit(background_text, font_rect2)
-                screen.blit(score_text, font_rect)
+                screen.blit(text, font_rect)
                 
                 animation_counter -= 1
                 
@@ -146,13 +143,16 @@ def main():
             if not spawn_pipes:
                 pygame.time.set_timer(pipe_spawn,1500)
                 spawn_pipes = True
+            
+            string = f"{score}"
+            font_px = 75
             font = pygame.font.Font(os.path.join("Assets", "font.ttf"), font_px)
             font2 = pygame.font.Font(os.path.join("Assets", "font2.ttf"), font_px)
-            font_surface = pygame.Surface((60,font_px))
-            background_text = font2.render(f"{score}", True, (225,225,225))
-            score_text = font.render(f"{score}", True, (0,0,0))
-            font_rect = font_surface.get_rect(center = (260, 100))
-            font_rect2 = font_surface.get_rect(center = (260 +1, 103))
+            background_text = font2.render(string, True, (225,225,225))
+            text = font.render(string, True, (0,0,0))
+            font_rect = background_text.get_rect(center = (WIDTH//2, 100))
+            font_rect2 = text.get_rect(center = (WIDTH//2+3, 112))
+            
             pipes.update()
             triggers.update()
             triggers.draw(screen)
@@ -183,7 +183,7 @@ def main():
             player.update()
             player.draw(screen)
             screen.blit(background_text, font_rect2)
-            screen.blit(score_text, font_rect)
+            screen.blit(text, font_rect)
 
         if final_screen:
             screen.blit(bg2_surf, bg2_rect)
@@ -192,7 +192,7 @@ def main():
             player.update()
             player.draw(screen)
             screen.blit(background_text, font_rect2)
-            screen.blit(score_text, font_rect)
+            screen.blit(text, font_rect)
 
         pygame.display.update()
         clock.tick(FPS)
@@ -207,6 +207,10 @@ def move_background(background, background2):
     if background2.left < -952:
         background2.left = 0
 
+def write_text(string, x_pos, y_pos, font_px):
+        
+        
+        return background_text, text, font_rect, font_rect2
 
 if __name__ == "__main__":
     main()

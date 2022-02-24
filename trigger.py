@@ -4,9 +4,8 @@ class Trigger(pygame.sprite.Sprite):
     def __init__(self,y_pos):
         super().__init__()
         self.y_pos = y_pos
-        self.image = pygame.Surface((1, 180))
-        self.image.fill('Red')
-        self.rect = self.image.get_rect(x = 600, top = y_pos)
+        self.image = pygame.Surface((1, 200))
+        self.rect = self.image.get_rect(x = 790, top = y_pos)
         self.speed = 2
         self.triggered = False
         
