@@ -19,6 +19,10 @@ class Player(pygame.sprite.Sprite):
         self.angle = 0
         self.speed = -7
     
+    def hit_ground(self, impulse):
+        self.angle = 0
+        self.speed = -impulse
+    
     def apply_gravity(self):
         if self.rect.bottom <= 700:
             self.speed += self.GRAVITY
