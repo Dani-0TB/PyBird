@@ -12,8 +12,6 @@ Para instalar pygame, abran la terminal, o la consola de comandos en windows y e
 
 `$ pip install pygame`
 
-Le dan que si a todo y listo.
-
 Luego vayan a la carpeta donde descomprimieron los archivos y abran el archivo "PyBird 1.02.py" y listo.
 
 # Controles
