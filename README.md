@@ -18,4 +18,4 @@ Luego vayan a la carpeta donde descomprimieron los archivos y abran el archivo "
 
 ESPACIO y Click izquierdo: Saltar
 
-ESPACIO o click derecho: Reiniciar
+ESPACIO o Click derecho: Reiniciar
